@@ -20971,20 +20971,20 @@
         var halfW = w.globals.gridWidth / 2;
         var halfH = w.globals.gridHeight / 2;
         var translateX = halfW - w.globals.gridWidth / 2 * scaleSize;
-        var translateY = halfH - w.globals.gridHeight / 2 * scaleSize; // if (this.chartType === 'donut') {
-        //   // draw the inner circle and add some text to it
-        //   const circle = graphics.drawCircle(this.donutSize)
-        //
-        //   circle.attr({
-        //     cx: this.centerX,
-        //     cy: this.centerY,
-        //     fill: w.config.plotOptions.pie.donut.background
-        //       ? w.config.plotOptions.pie.donut.background
-        //       : 'transparent'
-        //   })
-        //
-        //   elSeries.add(circle)
-        // }
+        var translateY = halfH - w.globals.gridHeight / 2 * scaleSize;
+
+        if (this.chartType === 'donut') {
+          // draw the inner circle and add some text to it
+          var circle = graphics.drawCircle(this.donutSize);
+          circle.attr({
+            cx: this.centerX,
+            cy: this.centerY,
+            fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
+            stroke: 'white',
+            strokeWidth: '9%'
+          });
+          elSeries.add(circle);
+        }
 
         var elG = self.drawArcs(sectorAngleArr, series); // add slice dataLabels at the end
 
