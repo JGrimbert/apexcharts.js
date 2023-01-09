@@ -20990,8 +20990,8 @@
 
           var blur = graphics.drawCircle(donutSize);
           blur.attr({
-            cx: this.centerX,
-            cy: this.centerY,
+            cx: this.centerX - 60,
+            cy: this.centerY - 60,
             fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
             stroke: 'white',
             'stroke-width': sizeRing * 1.6 + 'px',
