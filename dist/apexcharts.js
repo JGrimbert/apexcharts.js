@@ -20984,9 +20984,20 @@
             fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
             stroke: 'white',
             'stroke-width': sizeRing * 1.6 + 'px',
-            filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
+            filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2)) drop-shadow(-5px -5px 8px rgb(0 0 0 / 0.2))'
           });
-          elSeries.add(circle);
+          elSeries.add(circle); // draw the inner circle and add some text to it
+
+          var blur = graphics.drawCircle(donutSize);
+          blur.attr({
+            cx: this.centerX,
+            cy: this.centerY,
+            fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
+            stroke: 'white',
+            'stroke-width': sizeRing * 1.6 + 'px',
+            filter: 'blur(10px)'
+          });
+          elSeries.add(blur);
         }
 
         var elG = self.drawArcs(sectorAngleArr, series); // add slice dataLabels at the end
