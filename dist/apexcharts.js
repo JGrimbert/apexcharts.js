@@ -20989,10 +20989,9 @@
           elSeries.add(circle); // draw the inner circle and add some text to it
 
           var blur = graphics.drawCircle(donutSize);
-          console.log(this.centerX);
           blur.attr({
-            cx: this.centerX - 60,
-            cy: this.centerY - 60,
+            cx: this.centerX - 20,
+            cy: this.centerY - 20,
             fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
             stroke: 'white',
             'stroke-width': sizeRing * 1.6 + 'px',
