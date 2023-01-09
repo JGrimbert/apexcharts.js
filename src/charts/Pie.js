@@ -149,10 +149,11 @@ class Pie {
 
     if (this.chartType === 'donut') {
 
-      const middleDonut = (w.globals.radialSize - this.donutSize) / 2 + this.donutSize;
+      const sizeRing = (w.globals.radialSize - this.donutSize);
+      const donutSize = Math.floor(sizeRing / 2) + this.donutSize
 
       // draw the inner circle and add some text to it
-      const circle = graphics.drawCircle(middleDonut)
+      const circle = graphics.drawCircle(donutSize)
 
       circle.attr({
         cx: this.centerX,
@@ -161,7 +162,7 @@ class Pie {
           ? w.config.plotOptions.pie.donut.background
           : 'transparent',
         stroke: 'white',
-        'stroke-width': '16%',
+        'stroke-width': sizeRing * 1.6 + 'px',
         filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
       })
 
