@@ -20981,9 +20981,21 @@
             cy: this.centerY,
             fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
             stroke: 'white',
-            strokeWidth: '9%'
+            strokeWidth: '4%',
+            filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
           });
-          elSeries.add(circle);
+          elSeries.add(circle); // draw the inner circle and add some text to it
+
+          var circleExt = graphics.drawCircle(this.donutSize);
+          circleExt.attr({
+            cx: this.centerX,
+            cy: this.centerY,
+            fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
+            stroke: 'white',
+            strokeWidth: '4%',
+            filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
+          });
+          elSeries.add(circleExt);
         }
 
         var elG = self.drawArcs(sectorAngleArr, series); // add slice dataLabels at the end
@@ -21267,7 +21279,7 @@
           el.animate(opts.dur, w.globals.easing, opts.animBeginArr[opts.i]).afterAll(function () {
             if (me.chartType === 'pie' || me.chartType === 'donut' || me.chartType === 'polarArea') {
               this.animate(w.config.chart.animations.dynamicAnimation.speed).attr({
-                'stroke-width': me.strokeWidth
+                'stroke-width': 0
               });
             }
 
@@ -21308,7 +21320,7 @@
           el.node.setAttribute('data:pathOrig', path);
           el.attr({
             d: path,
-            'stroke-width': me.strokeWidth
+            'stroke-width': 0
           });
         }
       }
@@ -21397,7 +21409,7 @@
         var pathBeginning = ['M', x1, y1, 'A', size, size, 0, largeArc, 1, x2, y2];
 
         if (me.chartType === 'donut') {
-          path = [].concat(pathBeginning, ['L', startInner.x, startInner.y, 'A', me.donutSize, me.donutSize, 0, largeArc, 0, endInner.x, endInner.y, 'L', x1, y1, 'z']).join(' ');
+          path = [].concat(pathBeginning, ['A', 12, 12, 0, 1, 1, startInner.x, startInner.y, 'A', me.donutSize, me.donutSize, 0, largeArc, 0, endInner.x, endInner.y, 'A', 12, 12, 0, 0, 0, x1, y1, 'z']).join(' ');
         } else if (me.chartType === 'pie' || me.chartType === 'polarArea') {
           path = [].concat(pathBeginning, ['L', me.centerX, me.centerY, 'L', x1, y1]).join(' ');
         } else {

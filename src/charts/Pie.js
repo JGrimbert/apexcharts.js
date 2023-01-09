@@ -158,10 +158,27 @@ class Pie {
           ? w.config.plotOptions.pie.donut.background
           : 'transparent',
         stroke: 'white',
-        strokeWidth: '9%'
+        strokeWidth: '4%',
+        filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
       })
 
       elSeries.add(circle)
+
+      // draw the inner circle and add some text to it
+      const circleExt = graphics.drawCircle(this.donutSize)
+
+      circleExt.attr({
+        cx: this.centerX,
+        cy: this.centerY,
+        fill: w.config.plotOptions.pie.donut.background
+          ? w.config.plotOptions.pie.donut.background
+          : 'transparent',
+        stroke: 'white',
+        strokeWidth: '4%',
+        filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
+      })
+
+      elSeries.add(circleExt)
     }
 
     let elG = self.drawArcs(sectorAngleArr, series)
@@ -530,7 +547,7 @@ class Pie {
           ) {
             this.animate(w.config.chart.animations.dynamicAnimation.speed).attr(
               {
-                'stroke-width': me.strokeWidth
+                'stroke-width': 0
               }
             )
           }
@@ -577,7 +594,7 @@ class Pie {
 
       el.attr({
         d: path,
-        'stroke-width': me.strokeWidth
+        'stroke-width': 0
       })
     }
   }
@@ -692,7 +709,7 @@ class Pie {
     if (me.chartType === 'donut') {
       path = [
         ...pathBeginning,
-        'L',
+        'A', 12, 12, 0, 1, 1,
         startInner.x,
         startInner.y,
         'A',
@@ -703,7 +720,7 @@ class Pie {
         0,
         endInner.x,
         endInner.y,
-        'L',
+        'A', 12, 12, 0, 0,0,
         x1,
         y1,
         'z'
