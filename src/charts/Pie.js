@@ -148,8 +148,11 @@ class Pie {
     let translateY = halfH - (w.globals.gridHeight / 2) * scaleSize
 
     if (this.chartType === 'donut') {
+
+      const middleDonut = (w.globals.radialSize - this.donutSize) / 2 + this.donutSize;
+
       // draw the inner circle and add some text to it
-      const circle = graphics.drawCircle(this.donutSize)
+      const circle = graphics.drawCircle(middleDonut)
 
       circle.attr({
         cx: this.centerX,
@@ -158,27 +161,11 @@ class Pie {
           ? w.config.plotOptions.pie.donut.background
           : 'transparent',
         stroke: 'white',
-        strokeWidth: '4%',
+        'stroke-width': '16%',
         filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
       })
 
       elSeries.add(circle)
-
-      // draw the inner circle and add some text to it
-      const circleExt = graphics.drawCircle(this.donutSize)
-
-      circleExt.attr({
-        cx: this.centerX,
-        cy: this.centerY,
-        fill: w.config.plotOptions.pie.donut.background
-          ? w.config.plotOptions.pie.donut.background
-          : 'transparent',
-        stroke: 'white',
-        strokeWidth: '4%',
-        filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
-      })
-
-      elSeries.add(circleExt)
     }
 
     let elG = self.drawArcs(sectorAngleArr, series)

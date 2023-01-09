@@ -20974,28 +20974,18 @@
         var translateY = halfH - w.globals.gridHeight / 2 * scaleSize;
 
         if (this.chartType === 'donut') {
-          // draw the inner circle and add some text to it
-          var circle = graphics.drawCircle(this.donutSize);
+          var middleDonut = (w.globals.radialSize - this.donutSize) / 2 + this.donutSize; // draw the inner circle and add some text to it
+
+          var circle = graphics.drawCircle(middleDonut);
           circle.attr({
             cx: this.centerX,
             cy: this.centerY,
             fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
             stroke: 'white',
-            strokeWidth: '4%',
+            'stroke-width': '12%',
             filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
           });
-          elSeries.add(circle); // draw the inner circle and add some text to it
-
-          var circleExt = graphics.drawCircle(this.donutSize);
-          circleExt.attr({
-            cx: this.centerX,
-            cy: this.centerY,
-            fill: w.config.plotOptions.pie.donut.background ? w.config.plotOptions.pie.donut.background : 'transparent',
-            stroke: 'white',
-            strokeWidth: '4%',
-            filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2))'
-          });
-          elSeries.add(circleExt);
+          elSeries.add(circle);
         }
 
         var elG = self.drawArcs(sectorAngleArr, series); // add slice dataLabels at the end
