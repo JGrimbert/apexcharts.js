@@ -30,7 +30,7 @@
     "unit": "jest tests/unit/",
     "e2e": "node tests/e2e/samples.js test",
     "e2e:update": "node tests/e2e/samples.js update",
-    "build:samples": "node samples/source/index.js generate"
+    "build:samples": "node samples/source/index.js generate",
   },
   "dependencies": {
     "svg.draggable.js": "^2.2.2",
