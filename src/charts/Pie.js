@@ -156,7 +156,9 @@ class Pie {
         cy: this.centerY,
         fill: w.config.plotOptions.pie.donut.background
           ? w.config.plotOptions.pie.donut.background
-          : 'transparent'
+          : 'transparent',
+        stroke: 'white',
+        strokeWidth: '9%'
       })
 
       elSeries.add(circle)
