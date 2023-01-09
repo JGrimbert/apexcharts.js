@@ -20989,6 +20989,7 @@
           elSeries.add(circle); // draw the inner circle and add some text to it
 
           var blur = graphics.drawCircle(donutSize);
+          console.log(this.centerX);
           blur.attr({
             cx: this.centerX - 60,
             cy: this.centerY - 60,

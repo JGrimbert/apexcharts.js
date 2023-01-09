@@ -148,8 +148,7 @@ class Pie {
     let translateY = halfH - (w.globals.gridHeight / 2) * scaleSize
 
     if (this.chartType === 'donut') {
-
-      const sizeRing = (w.globals.radialSize - this.donutSize);
+      const sizeRing = w.globals.radialSize - this.donutSize
       const donutSize = Math.floor(sizeRing / 2) + this.donutSize
 
       // draw the inner circle and add some text to it
@@ -163,18 +162,20 @@ class Pie {
           : 'transparent',
         stroke: 'white',
         'stroke-width': sizeRing * 1.6 + 'px',
-        filter: 'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2)) drop-shadow(-5px -5px 8px rgb(0 0 0 / 0.2))'
+        filter:
+          'drop-shadow(5px 5px 8px rgb(0 0 0 / 0.2)) drop-shadow(-5px -5px 8px rgb(0 0 0 / 0.2))'
       })
 
       elSeries.add(circle)
 
-
       // draw the inner circle and add some text to it
       const blur = graphics.drawCircle(donutSize)
 
+      console.log(this.centerX)
+
       blur.attr({
-        cx: this.centerX-60,
-        cy: this.centerY-60,
+        cx: this.centerX - 60,
+        cy: this.centerY - 60,
         fill: w.config.plotOptions.pie.donut.background
           ? w.config.plotOptions.pie.donut.background
           : 'transparent',
@@ -714,7 +715,12 @@ class Pie {
     if (me.chartType === 'donut') {
       path = [
         ...pathBeginning,
-        'A', 12, 12, 0, 1, 1,
+        'A',
+        12,
+        12,
+        0,
+        1,
+        1,
         startInner.x,
         startInner.y,
         'A',
@@ -725,7 +731,12 @@ class Pie {
         0,
         endInner.x,
         endInner.y,
-        'A', 12, 12, 0, 0,0,
+        'A',
+        12,
+        12,
+        0,
+        0,
+        0,
         x1,
         y1,
         'z'
